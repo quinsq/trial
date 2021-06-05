@@ -4,7 +4,7 @@ from settings import *
 class ImageButton():
 
     def __init__(self, screen, image1, image2):
-            """initialise Button attributes."""
+            """initialise image attributes."""
             self.screen = screen
             self.screen_rect = self.screen.get_rect()
             self.image1 = image1
@@ -15,28 +15,23 @@ class ImageButton():
             self.width, self.height = 300, 300
             self.rect = pygame.Rect(0,0,self.width,self.height)
 
-            #self.button_color = (130, 130, 130)
-            #self.text_color = ('lightskyblue3')
-            #self.font = pygame.font.SysFont(None, 48)
-
             #build images' rect object and position it.
             #self.img1_rect = pygame.Rect(0,200,self.width,self.height)
             #self.img2_rect = pygame.Rect(375,200,self.width, self.height)
             #self.rect.center = self.screen_rect.center
-
-            #the button meassage needs to be prepped only once.
+            
             self._prep_image()
 
     def _prep_image(self):
-        """turn message into a rendered image and center text on the button."""
-
+        """position images."""
+        #load images here or in main?
         self.img1_rect = self.image1.get_rect()
         self.img2_rect = self.image2.get_rect()
         self.img1_rect.center = (187.5, 350)
         self.img2_rect.center = (562.5, 350)
 
     def draw_images(self):
-        #draw blank button and then draw message.
+        #draw images to screen.
         self.screen.fill(BLACK)
         self.screen.blit(self.image1, self.img1_rect)
         self.screen.blit(self.image2, self.img2_rect)
@@ -46,13 +41,13 @@ class ImageButton():
     def check_answer(self,mouse_pos):
         img1_clicked = self.img1_rect.collidepoint(mouse_pos)
         if img1_clicked:
-            print('yay')#pass #return score
+            print('yay') #return score
         img2_clicked = self.img2_rect.collidepoint(mouse_pos)
         if img2_clicked:
-            print('eureka!')#pass #return score
+            print('eureka!') #return score
 
         if img1_clicked or img2_clicked:
-            self.round_mc = True
+            self.round_mc = True #change active round
 
 
 def main():
